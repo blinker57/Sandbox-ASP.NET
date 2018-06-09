@@ -1,5 +1,7 @@
-﻿using Sandbox_ASP.NET.Models;
+﻿using Microsoft.AspNet.Identity;
+using Sandbox_ASP.NET.Models;
 using Sandbox_ASP.NET.ViewModels;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -14,6 +16,7 @@ namespace Sandbox_ASP.NET.Controllers
       _context = new ApplicationDbContext();
     }
 
+    [Authorize]
     public ActionResult Create()
     {
       var viewModel = new TVShowViewModel
@@ -22,6 +25,24 @@ namespace Sandbox_ASP.NET.Controllers
       };
 
       return View(viewModel);
+    }
+
+    [Authorize]
+    [HttpPost]
+    public ActionResult Create(TVShowViewModel viewModel)
+    {
+      var show = new TVShow
+      {
+        TVWatcherId = User.Identity.GetUserId(),
+        DateTime = DateTime.Parse(string.Format("{0} {1}", viewModel.Date, viewModel.Time)),
+        GenreId = viewModel.Genre,
+        Network = viewModel.Network
+      };
+
+      _context.TVShows.Add(show);
+      _context.SaveChanges();
+
+      return RedirectToAction("Index", "Home");
     }
   }
 }
