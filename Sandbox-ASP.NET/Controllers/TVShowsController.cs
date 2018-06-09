@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Sandbox_ASP.NET.Models;
 using Sandbox_ASP.NET.ViewModels;
-using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -31,10 +30,16 @@ namespace Sandbox_ASP.NET.Controllers
     [HttpPost]
     public ActionResult Create(TVShowViewModel viewModel)
     {
+      if (!ModelState.IsValid)
+      {
+        viewModel.Genres = _context.Genres.ToList();
+        return View("Create", viewModel);
+      }
+
       var show = new TVShow
       {
         TVWatcherId = User.Identity.GetUserId(),
-        DateTime = viewModel.DateTime,
+        DateTime = viewModel.GetDateTime(),
         GenreId = viewModel.Genre,
         Network = viewModel.Network
       };
