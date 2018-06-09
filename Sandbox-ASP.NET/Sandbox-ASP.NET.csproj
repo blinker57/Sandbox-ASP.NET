@@ -205,10 +205,21 @@
     <Compile Include="Migrations\201806081817004_InitialModel.Designer.cs">
       <DependentUpon>201806081817004_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806091735588_CreateTVShowTable.cs" />
+    <Compile Include="Migrations\201806091735588_CreateTVShowTable.Designer.cs">
+      <DependentUpon>201806091735588_CreateTVShowTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806091810040_OverrideConventionsForTVShowsAndGenres.cs" />
+    <Compile Include="Migrations\201806091810040_OverrideConventionsForTVShowsAndGenres.Designer.cs">
+      <DependentUpon>201806091810040_OverrideConventionsForTVShowsAndGenres.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\TVShow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -291,6 +302,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201806081817004_InitialModel.resx">
       <DependentUpon>201806081817004_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806091735588_CreateTVShowTable.resx">
+      <DependentUpon>201806091735588_CreateTVShowTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806091810040_OverrideConventionsForTVShowsAndGenres.resx">
+      <DependentUpon>201806091810040_OverrideConventionsForTVShowsAndGenres.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
