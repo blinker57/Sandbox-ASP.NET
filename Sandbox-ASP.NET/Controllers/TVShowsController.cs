@@ -34,7 +34,7 @@ namespace Sandbox_ASP.NET.Controllers
       var show = new TVShow
       {
         TVWatcherId = User.Identity.GetUserId(),
-        DateTime = DateTime.Parse(string.Format("{0} {1}", viewModel.Date, viewModel.Time)),
+        DateTime = viewModel.DateTime,
         GenreId = viewModel.Genre,
         Network = viewModel.Network
       };
