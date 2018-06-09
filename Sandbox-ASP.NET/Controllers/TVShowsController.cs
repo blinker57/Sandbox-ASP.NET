@@ -28,6 +28,7 @@ namespace Sandbox_ASP.NET.Controllers
 
     [Authorize]
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public ActionResult Create(TVShowViewModel viewModel)
     {
       if (!ModelState.IsValid)

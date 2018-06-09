@@ -8,6 +8,7 @@
 <h2>Add a TV Show</h2>
 @using (Html.BeginForm("Create", "TVShows"))
 {
+  @Html.AntiForgeryToken()
   <div class="form-group">
     @Html.LabelFor(m => m.Network)
     @Html.TextBoxFor(m => m.Network, new { @class = "form-control" })
