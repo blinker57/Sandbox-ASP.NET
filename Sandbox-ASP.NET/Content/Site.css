@@ -22,3 +22,37 @@ select,
 textarea {
     max-width: 280px;
 }
+
+span.field-validation-error {
+  color: red;
+  font-weight: bold;
+}
+
+/* Bootstrap Overrides */
+.navbar-inverse .navbar-brand {
+  color: #bfbfbf;
+  font-size: 36px;
+  font-family: "Ubuntu";
+  height: 66px;
+  padding: 24px;
+}
+
+.navbar-nav > li > a {
+  padding-top: 24px;
+  padding-bottom: 15px;
+  font-size: 18px;
+}
+
+.jumbotron {
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+#main-title {
+  font-family: 'Fredericka the Great', cursive;
+}
+
+#byline {
+  font-size: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+}
