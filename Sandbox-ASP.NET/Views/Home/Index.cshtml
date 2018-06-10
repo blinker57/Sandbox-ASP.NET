@@ -13,10 +13,27 @@
   </ol>
 </div>
 
-<ul>
+<ul class="tvshows">
   @foreach (var TVShow in Model)
   {
-    <li>@TVShow.DateTime - @TVShow.TVWatcher.Name</li>
+  <li>
+    <div class="date">
+      <div class="month">
+        @TVShow.DateTime.ToString("MMM")
+      </div>
+      <div class="day">
+        @TVShow.DateTime.ToString("d ")
+      </div>
+    </div>
+    <div class="details">
+      <span class="tvwatcher">
+        @TVShow.TVWatcher.Name
+      </span>
+      <span class="genre">
+        @TVShow.Genre.Name
+      </span>
+    </div>
+  </li>
   }
 </ul>
 

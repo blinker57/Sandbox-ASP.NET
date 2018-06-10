@@ -19,6 +19,7 @@ namespace Sandbox_ASP.NET.Controllers
     {
       var upcomingShows = _context.TVShows
             .Include(tv => tv.TVWatcher)
+            .Include(tv => tv.Genre)
             .Where(tv => tv.DateTime > DateTime.Now);
 
       return View(upcomingShows);
