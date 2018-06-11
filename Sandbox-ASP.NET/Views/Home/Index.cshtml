@@ -32,6 +32,7 @@
       <span class="genre">
         @TVShow.Genre.Name
       </span>
+      <button data-tvshow-id="@TVShow.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Watching?</button>
     </div>
   </li>
   }
@@ -58,3 +59,22 @@
     <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
   </div>
 </div>
+@section scripts
+{
+  <script>
+    $(document).ready(function () {
+      $(".js-toggle-attendance").click(function (e) {
+        var button = $(e.target);
+        $.post("/api/attendances", { tvshowId: button.attr("data-tvshow-id") })
+          .done(function () {
+            button
+              .removeClass("btn-default")
+              .addClass("btn-info")
+              .text("Watching");
+          })
+          .fail(function () {
+            alert("Something failed!");
+          })
+      })
+    })
+   </script>}
