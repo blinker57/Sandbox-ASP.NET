@@ -1,4 +1,5 @@
 ﻿using Sandbox_ASP.NET.Models;
+using Sandbox_ASP.NET.ViewModels;
 using System;
 using System.Data.Entity;
 using System.Linq;
@@ -22,7 +23,13 @@ namespace Sandbox_ASP.NET.Controllers
             .Include(tv => tv.Genre)
             .Where(tv => tv.DateTime > DateTime.Now);
 
-      return View(upcomingShows);
+      var viewModel = new HomeViewModel
+      {
+        UpcomingShows = upcomingShows,
+        ShowActions = User.Identity.IsAuthenticated
+      };
+
+      return View(viewModel);
     }
 
     public ActionResult About()

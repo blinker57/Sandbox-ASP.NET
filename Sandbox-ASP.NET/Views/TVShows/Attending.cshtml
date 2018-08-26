@@ -1,0 +1,38 @@
+﻿@model Sandbox_ASP.NET.ViewModels.HomeViewModel
+  @{
+    ViewBag.Title = "Attending";
+  }
+
+  <h2>Attending</h2>
+  <ul class="tvshows">
+    @foreach (var TVShow in Model.UpcomingShows)
+    {
+      <li>
+        <div class="date">
+          <div class="month">
+            @TVShow.DateTime.ToString("MMM")
+          </div>
+          <div class="day">
+            @TVShow.DateTime.ToString("d ")
+          </div>
+        </div>
+        <div class="details">
+          <span class="tvwatcher">
+            @TVShow.TVWatcher.Name
+            @if (Model.ShowActions)
+            {
+              <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@TVShow.TVWatcher">Follow</button>
+            }
+          </span>
+          <span class="genre">
+            @TVShow.Genre.Name
+          </span>
+          @if (Model.ShowActions)
+          {
+            <button data-tvshow-id="@TVShow.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Watching?</button>
+          }
+        </div>
+      </li>
+    }
+  </ul>
+

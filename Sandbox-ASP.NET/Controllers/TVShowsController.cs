@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Sandbox_ASP.NET.Models;
 using Sandbox_ASP.NET.ViewModels;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -13,6 +14,25 @@ namespace Sandbox_ASP.NET.Controllers
     public TVShowsController()
     {
       _context = new ApplicationDbContext();
+    }
+
+    public ActionResult Attending()
+    {
+      var userId = User.Identity.GetUserId();
+      var tvshows = _context.Attendances
+          .Where(a => a.AttendeeId == userId)
+          .Select(a => a.TVShow)
+          .Include(t => t.TVWatcher)
+          .Include(t => t.Genre)
+          .ToList();
+
+      var viewModel = new HomeViewModel()
+      {
+        UpcomingShows = tvshows,
+        ShowActions = User.Identity.IsAuthenticated
+      };
+
+      return View(viewModel);
     }
 
     [Authorize]

@@ -12,6 +12,8 @@ namespace Sandbox_ASP.NET.Models
     public DbSet<TVShow> TVShows { get; set; }
     public DbSet<Genre> Genres { get; set; }
     public DbSet<Attendance> Attendances { get; set; }
+    public DbSet<Following> Followings { get; set; }
+
     public override IDbSet<ApplicationUser> Users { get => base.Users; set => base.Users = value; }
     public override IDbSet<IdentityRole> Roles { get => base.Roles; set => base.Roles = value; }
 
@@ -81,6 +83,17 @@ namespace Sandbox_ASP.NET.Models
           .HasRequired(a => a.TVShow)
           .WithMany()
           .WillCascadeOnDelete(false);
+
+      modelBuilder.Entity<ApplicationUser>()
+         .HasMany(u => u.Followers)
+         .WithRequired(f => f.Followee)
+         .WillCascadeOnDelete(false);
+
+      modelBuilder.Entity<ApplicationUser>()
+         .HasMany(u => u.Followees)
+         .WithRequired(f => f.Follower)
+         .WillCascadeOnDelete(false);
+
       base.OnModelCreating(modelBuilder);
     }
   }
